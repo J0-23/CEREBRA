@@ -46,7 +46,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="cerebra-theme"
           >
-            <Toaster position="bottom-center" />
+            <Toaster position="top-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
