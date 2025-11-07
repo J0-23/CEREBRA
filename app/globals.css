@@ -130,3 +130,7 @@ body,
 button:hover {
   cursor: pointer;
 }
+
+[role="button"] {
+  cursor: pointer;
+}
