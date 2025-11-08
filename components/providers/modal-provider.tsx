@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { SettingsModal } from "../modals/settings-modal";
+import CoverImageModal from "../modals/cover-image-modal";
 
-import { SettingsModal } from "@/components/modals/settings-modal";
-
-export const ModalProvider = () => {
+const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -18,6 +18,9 @@ export const ModalProvider = () => {
   return (
     <>
       <SettingsModal />
+      <CoverImageModal />
     </>
   );
 };
+
+export default ModalProvider;
