@@ -11,13 +11,18 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Spinner } from "@/components/spinner";
 import { Input } from "@/components/ui/input";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
+import { useEdgeStore } from "@/lib/edgestore";
 
 export const TrashBox = () => {
   const router = useRouter();
   const params = useParams();
+
+  const { edgestore } = useEdgeStore();
+
   const documents = useQuery(api.documents.getTrash);
   const restore = useMutation(api.documents.restore);
   const remove = useMutation(api.documents.remove);
+  const removeCoverImage = useMutation(api.documents.removeCoverImage);
 
   const [search, setSearch] = useState("");
 
@@ -43,14 +48,26 @@ export const TrashBox = () => {
     });
   };
 
-  const onRemove = (documentId: Id<"documents">) => {
-    const promise = remove({ id: documentId });
+  const onRemove = async (
+    documentId: Id<"documents">,
+    coverImageUrl?: string
+  ) => {
+    const promise = (async () => {
+      console.log("Deleting cover image:", coverImageUrl);
+      if (coverImageUrl) {
+        await edgestore.publicFiles.delete({ url: coverImageUrl });
+        await removeCoverImage({ id: documentId });
+      }
+      await remove({ id: documentId });
+    })();
 
     toast.promise(promise, {
       loading: "Deleting note...",
       success: "Note deleted!",
       error: "Failed to delete note.",
     });
+
+    await promise;
 
     if (params.documentId === documentId) {
       router.push("/documents");
@@ -96,7 +113,9 @@ export const TrashBox = () => {
               >
                 <Undo className="h-4 w-4 text-muted-foreground" />
               </div>
-              <ConfirmModal onConfirm={() => onRemove(document._id)}>
+              <ConfirmModal
+                onConfirm={() => onRemove(document._id, document.coverImage)}
+              >
                 <div
                   role="button"
                   className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"

@@ -21,11 +21,16 @@ interface CoverProps {
 
 export const Cover = ({ url, preview }: CoverProps) => {
   const params = useParams();
-
+  const { edgestore } = useEdgeStore();
   const coverImage = useCoverImage();
   const removeCoverImage = useMutation(api.documents.removeCoverImage);
 
-  const onRemove = () => {
+  const onRemove = async () => {
+    if (url) {
+      await edgestore.publicFiles.delete({
+        url: url,
+      });
+    }
     removeCoverImage({
       id: params.documentId as Id<"documents">,
     });
@@ -46,7 +51,7 @@ export const Cover = ({ url, preview }: CoverProps) => {
             className="text-muted-foreground text-xs"
             variant="outline"
             size="sm"
-            onClick={coverImage.onOpen}
+            onClick={() => coverImage.onReplace(url)}
           >
             <ImageIcon className="w-4 h-4 mr-2" />
             Change Cover
@@ -71,3 +76,7 @@ Cover.Skeleton = function CoverSkeleton() {
 };
 
 export default Cover;
+
+Cover.Skeleton = function CoverSkeleton() {
+  return <Skeleton className="w-full h-[12vh]" />;
+};
