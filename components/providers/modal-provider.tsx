@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { SettingsModal } from "../modals/settings-modal";
 import CoverImageModal from "../modals/cover-image-modal";
 
+const useHydrated = () => {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+};
+
 const ModalProvider = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const isHydrated = useHydrated();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
+  if (!isHydrated) {
     return null;
   }
 

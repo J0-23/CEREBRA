@@ -62,8 +62,8 @@ export const DocumentList = ({
         }}
         className={cn(
           "hidden text-sm font-medium text-muted-foreground/80",
-          expanded && "last:block",
-          level === 0 && "hidden"
+          expanded && Object.keys(expanded).length > 0 && "last:block",
+          level === 0 && "hidden",
         )}
       >
         No pages found

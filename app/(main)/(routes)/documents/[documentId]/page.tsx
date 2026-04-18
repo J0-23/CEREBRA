@@ -9,7 +9,6 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Toolbar } from "@/components/toolbar";
 import Cover from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Editor } from "@/components/editor";
 
 interface DocumentIdPageProps {
   params: Promise<{
@@ -24,7 +23,7 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   // useMemo around dynamic() → Keeps the same editor component instance between renders, so it doesn’t reset on every state change.
   const Editor = useMemo(
     () => dynamic(() => import("@/components/editor"), { ssr: false }),
-    []
+    [],
   );
 
   const update = useMutation(api.documents.update);

@@ -2,45 +2,171 @@
 
 export const HeroBackground = () => {
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 opacity-40">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-            backgroundSize: "24px 24px",
-          }}
-        />
-      </div>
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 0,
+      }}
+    >
+      <style>{`
+        @keyframes gentle-pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+      `}</style>
+      {/* Subtle gradient backdrop */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(circle at 30% 20%, rgba(59,130,246,0.08), transparent 50%), radial-gradient(circle at 70% 80%, rgba(99,102,241,0.08), transparent 50%)",
+        }}
+      />
 
-      <div className="absolute top-[15%] left-[10%] w-24 h-24 border-2 border-blue-500/40 rounded-full animate-pulse" />
+      {/* Small dots - visible with subtle pulse */}
       <div
-        className="absolute top-[25%] right-[15%] w-20 h-20 border-2 border-indigo-500/40 rounded-full animate-pulse"
-        style={{ animationDelay: "1s" }}
+        style={{
+          position: "absolute",
+          top: "15%",
+          left: "12%",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "rgba(59, 130, 246, 0.4)",
+          animation: "gentle-pulse 3s ease-in-out infinite",
+        }}
       />
       <div
-        className="absolute bottom-[25%] left-[15%] w-28 h-28 border-2 border-purple-500/40 rounded-full animate-pulse"
-        style={{ animationDelay: "1.5s" }}
+        style={{
+          position: "absolute",
+          top: "35%",
+          left: "22%",
+          width: "5px",
+          height: "5px",
+          borderRadius: "50%",
+          background: "rgba(99, 102, 241, 0.35)",
+          animation: "gentle-pulse 3s ease-in-out infinite 0.5s",
+        }}
       />
       <div
-        className="absolute bottom-[15%] right-[20%] w-16 h-16 border-2 border-blue-500/40 rounded-full animate-pulse"
-        style={{ animationDelay: "2s" }}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "8%",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "rgba(139, 92, 246, 0.3)",
+          animation: "gentle-pulse 3s ease-in-out infinite 1s",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "68%",
+          left: "18%",
+          width: "5px",
+          height: "5px",
+          borderRadius: "50%",
+          background: "rgba(59, 130, 246, 0.35)",
+          animation: "gentle-pulse 3s ease-in-out infinite 1.5s",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "82%",
+          left: "28%",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "rgba(99, 102, 241, 0.3)",
+          animation: "gentle-pulse 3s ease-in-out infinite 2s",
+        }}
       />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-blue-500/25 via-indigo-500/20 to-purple-500/25 dark:from-blue-500/15 dark:via-indigo-500/10 dark:to-purple-500/15 rounded-full blur-3xl" />
+      {/* Right side dots */}
+      <div
+        style={{
+          position: "absolute",
+          top: "12%",
+          right: "18%",
+          width: "5px",
+          height: "5px",
+          borderRadius: "50%",
+          background: "rgba(139, 92, 246, 0.35)",
+          animation: "gentle-pulse 3s ease-in-out infinite 0.3s",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "28%",
+          right: "25%",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "rgba(59, 130, 246, 0.4)",
+          animation: "gentle-pulse 3s ease-in-out infinite 0.8s",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "45%",
+          right: "12%",
+          width: "5px",
+          height: "5px",
+          borderRadius: "50%",
+          background: "rgba(99, 102, 241, 0.32)",
+          animation: "gentle-pulse 3s ease-in-out infinite 1.3s",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "62%",
+          right: "22%",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "rgba(139, 92, 246, 0.38)",
+          animation: "gentle-pulse 3s ease-in-out infinite 1.8s",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "78%",
+          right: "30%",
+          width: "5px",
+          height: "5px",
+          borderRadius: "50%",
+          background: "rgba(59, 130, 246, 0.3)",
+          animation: "gentle-pulse 3s ease-in-out infinite 2.3s",
+        }}
+      />
 
-      <div className="absolute top-[20%] right-[25%] w-2 h-2 bg-blue-600 rounded-full animate-ping" />
+      {/* Center glow */}
       <div
-        className="absolute top-[40%] left-[20%] w-2 h-2 bg-purple-600 rounded-full animate-ping"
-        style={{ animationDelay: "0.5s" }}
-      />
-      <div
-        className="absolute bottom-[40%] right-[22%] w-2 h-2 bg-indigo-600 rounded-full animate-ping"
-        style={{ animationDelay: "1s" }}
-      />
-      <div
-        className="absolute bottom-[20%] left-[28%] w-2 h-2 bg-blue-600 rounded-full animate-ping"
-        style={{ animationDelay: "1.5s" }}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)",
+          filter: "blur(30px)",
+          animation: "gentle-pulse 4s ease-in-out infinite",
+        }}
       />
     </div>
   );

@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 export const useOrigin = () => {
-  const [mounted, setMounted] = useState(false);
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin
       : "";
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isHydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
-  if (!mounted) {
+  if (!isHydrated) {
     return "";
   }
 

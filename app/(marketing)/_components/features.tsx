@@ -33,7 +33,7 @@ export const Features = () => {
   return (
     <section
       id="features"
-      className="py-20 px-4 relative overflow-hidden min-h-[80vh] flex flex-col items-center justify-center"
+      className="py-24 px-6 relative overflow-hidden min-h-screen flex flex-col items-center justify-center"
     >
       <div className="absolute inset-0 -z-10">
         <div
@@ -51,7 +51,7 @@ export const Features = () => {
 
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-5xl sm:text-6xl font-bold mb-4">
             Everything you need to{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
               think clearer
@@ -67,8 +67,7 @@ export const Features = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="animate-enter-up p-6 rounded-xl border bg-card dark:bg-card/50 hover:bg-card/80 transition-colors"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="animate-enter-up p-6 rounded-lg border bg-card dark:bg-card/50 hover:bg-card/80 transition-colors"
             >
               <div className="w-12 h-12 rounded-lg bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-4">
                 <feature.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />

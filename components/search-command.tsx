@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { File } from "lucide-react";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
@@ -17,19 +17,23 @@ import {
 import { useSearch } from "@/hooks/use-search";
 import { api } from "@/convex/_generated/api";
 
+const useHydrated = () => {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+};
+
 export const SearchCommand = () => {
+  const isHydrated = useHydrated();
   const { user } = useUser();
   const router = useRouter();
   const documents = useQuery(api.documents.getSearch);
-  const [isMounted, setIsMounted] = useState(false);
 
   const toggle = useSearch((store) => store.toggle);
   const isOpen = useSearch((store) => store.isOpen);
   const onClose = useSearch((store) => store.onClose);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -48,7 +52,7 @@ export const SearchCommand = () => {
     onClose();
   };
 
-  if (!isMounted) {
+  if (!isHydrated) {
     return null;
   }
 

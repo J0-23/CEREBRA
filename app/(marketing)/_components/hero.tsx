@@ -2,15 +2,15 @@
 
 import { useConvexAuth } from "convex/react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Brain, FolderTree, Lock } from "lucide-react";
+import { ArrowRight, ArrowDown, Brain, FolderTree, Lock } from "lucide-react";
 import { SignInButton } from "@clerk/clerk-react";
 import Link from "next/link";
 import { HeroBackground } from "./hero-background";
 
 const features = [
-  { icon: Brain, label: "Your second brain" },
-  { icon: FolderTree, label: "Organized notes" },
-  { icon: Lock, label: "Private by default" },
+  { label: "Markdown", icon: Brain },
+  { label: "Real-time sync", icon: FolderTree },
+  { label: "Private by default", icon: Lock },
 ];
 
 export const Hero = () => {
@@ -21,9 +21,8 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
       <HeroBackground />
-
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
         <div className="animate-fade-in-ups" style={{ animationDelay: "0ms" }}>
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
@@ -31,13 +30,13 @@ export const Hero = () => {
               Your second brain,
             </span>
             <br />
-            <span className="text-foreground">digitized.</span>
+            <span className="text-foreground">organized.</span>
           </h1>
         </div>
 
         <div
           className="animate-fade-in-ups"
-          style={{ animationDelay: "150ms" }}
+          style={{ animationDelay: "200ms" }}
         >
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Capture ideas, organize knowledge, and keep track of everything in
@@ -47,7 +46,7 @@ export const Hero = () => {
 
         <div
           className="animate-fade-in-ups flex flex-wrap justify-center gap-3"
-          style={{ animationDelay: "300ms" }}
+          style={{ animationDelay: "400ms" }}
         >
           {features.map((feature) => (
             <div
@@ -62,7 +61,7 @@ export const Hero = () => {
 
         <div
           className="animate-fade-in-ups flex flex-col sm:flex-row items-center justify-center gap-4"
-          style={{ animationDelay: "450ms" }}
+          style={{ animationDelay: "600ms" }}
         >
           {isLoading && (
             <div className="w-full flex items-center justify-center">
@@ -75,16 +74,18 @@ export const Hero = () => {
                 <Button asChild size="lg" className="min-w-[180px]">
                   <Link href="/documents">
                     Enter Cerebra
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
               ) : (
-                <SignInButton mode="modal">
-                  <Button size="lg" className="min-w-[180px]">
-                    Get Started Free
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </SignInButton>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <SignInButton mode="modal">
+                    <Button size="lg" className="min-w-[180px]">
+                      Get Started
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </SignInButton>
+                </div>
               )}
               <Button
                 variant="ghost"
@@ -94,9 +95,7 @@ export const Hero = () => {
               >
                 <span className="flex items-center gap-2 cursor-pointer">
                   Learn more
-                  <span className="transition-transform duration-200 group-hover:translate-y-0.5">
-                    ↓
-                  </span>
+                  <ArrowDown className="w-5 h-5 transition-transform duration-200 group-hover:translate-y-1" />
                 </span>
               </Button>
             </>
